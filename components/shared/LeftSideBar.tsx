@@ -27,6 +27,7 @@ const LeftSidebar = () => {
             <Link
               href={link.route}
               key={link.label}
+              /** change background color of each link according to the route we are in  */
               className={`leftsidebar_link ${isActive && "bg-primary-500 "}`}
             >
               <Image
