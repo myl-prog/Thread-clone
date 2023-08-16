@@ -24,12 +24,12 @@ import { updateUser } from "@/lib/actions/user.actions";
 
 interface Props {
     user: {
-      id: string;
+      id: string | undefined;
       objectId: string;
-      username: string;
+      username: string | null | undefined;
       name: string;
       bio: string;
-      image: string;
+      image: string | undefined;
     };
     btnTitle: string;
   }
