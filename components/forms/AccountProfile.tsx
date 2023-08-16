@@ -1,6 +1,7 @@
 "use client"
 import * as z from "zod"
 import Image from "next/image";
+import { usePathname , useRouter } from  'next/navigation';
 import {
   Form,
   FormControl,
@@ -19,6 +20,7 @@ import { userValidation } from "@/lib/validation/user";
 import { ChangeEvent, useState } from "react";
 import { isBase64Image } from "@/lib/utils";
 import { useUploadThing } from "@/lib/validation/uploadthing";
+import { updateUser } from "@/lib/actions/user.action";
 
 interface Props {
     user: {
@@ -32,6 +34,8 @@ interface Props {
     btnTitle: string;
   }
 const AccountProfile = ({ user, btnTitle }: Props) => {
+  const router = useRouter();
+  const pathname = usePathname();
   const { startUpload } = useUploadThing("media");   
   const [files, setFiles] = useState<File[]>([]);
     const form = useForm({
@@ -56,7 +60,15 @@ const AccountProfile = ({ user, btnTitle }: Props) => {
         }
       }
       
-      //TODO: Update user profile in Back-end
+      // Update user profile in Back-end
+      await updateUser({
+        name: values.name,
+        path: pathname,
+        username: values.username,
+        userId: user.id,
+        bio: values.bio,
+        image: values.profile_photo,
+      });
     }
     const handleImage = (
       e: ChangeEvent<HTMLInputElement>,
