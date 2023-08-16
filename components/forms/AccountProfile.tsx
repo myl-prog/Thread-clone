@@ -16,11 +16,11 @@ import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/textarea";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { userValidation } from "@/lib/validation/user";
+import { userValidation } from "@/lib/validations/user";
 import { ChangeEvent, useState } from "react";
 import { isBase64Image } from "@/lib/utils";
-import { useUploadThing } from "@/lib/validation/uploadthing";
-import { updateUser } from "@/lib/actions/user.action";
+import { useUploadThing } from "@/lib/validations/uploadthing";
+import { updateUser } from "@/lib/actions/user.actions";
 
 interface Props {
     user: {
@@ -133,6 +133,7 @@ const AccountProfile = ({ user, btnTitle }: Props) => {
                   onChange={(e) => handleImage(e, field.onChange)}
                 />
               </FormControl>
+              <FormMessage />
             </FormItem>
           )}
         />

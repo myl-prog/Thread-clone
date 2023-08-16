@@ -6,7 +6,7 @@ import TopBar from '@/components/shared/TopBar'
 import LeftSideBar from '@/components/shared/LeftSideBar'
 import RightSideBar from '@/components/shared/RightSideBar'
 import BottomBar from '@/components/shared/BottomBar'
-import { fetchUser } from '@/lib/actions/user.action'
+import { fetchUser } from '@/lib/actions/user.actions'
 import { redirect } from 'next/navigation'
 
 const inter = Inter({ subsets: ['latin'] })
@@ -26,7 +26,7 @@ export default async function RootLayout({
 
   const userInfo = await fetchUser(user.id);
   if (!userInfo?.onboarded) redirect("/onboarding");
-  
+
   return (
     <ClerkProvider>
       <html lang="en">
